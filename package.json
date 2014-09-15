@@ -1,0 +1,44 @@
+{
+  "name": "hapi-auth-header",
+  "description": "Robust Authorization Header Auth Scheme for Hapi, with custom error reporting schema.",
+  "version": "0.1.0",
+  "author": "Adam Eivy <atomantic@gmail.com> (http://twitter.com/antic)",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/atomantic/hapi-auth-header"
+  },
+  "main": "index",
+  "keywords": [
+    "hapi",
+    "plugin",
+    "auth",
+    "header",
+    "bearer",
+    "multiauth"
+  ],
+  "engines": {
+    "node": ">=0.10.22"
+  },
+  "dependencies": {
+    "boom": "2.x.x",
+    "hoek": "2.x.x"
+  },
+  "peerDependencies": {
+    "hapi": "6.x.x"
+  },
+  "devDependencies": {
+    "hapi": "6.x.x",
+    "lab": "4.x.x"
+  },
+  "scripts": {
+    "test": "node ./node_modules/lab/bin/lab -c"
+  },
+  "bugs": {
+    "url": "https://github.com/atomantic/hapi-auth-header/issues"
+  },
+  "homepage": "https://github.com/johnbrett/hapi-auth-header",
+  "directories": {
+    "test": "test"
+  },
+  "license": "MIT"
+}
