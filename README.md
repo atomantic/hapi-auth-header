@@ -6,7 +6,6 @@
 [![](http://img.shields.io/codeclimate/github/atomantic/hapi-auth-header.svg?style=flat)](https://codeclimate.com/github/atomantic/hapi-auth-header)
 [![](http://img.shields.io/codeclimate/coverage/github/atomantic/hapi-auth-header.svg?style=flat)](https://codeclimate.com/github/atomantic/hapi-auth-header)
 [![](http://img.shields.io/travis/atomantic/hapi-auth-header.svg?style=flat)](https://travis-ci.org/atomantic/hapi-auth-header)
-[![](http://img.shields.io/david/atomantic/hapi-auth-header.svg?style=flat)](https://www.npmjs.org/package/hapi-auth-header)
 
 [**hapi**](https://github.com/spumko/hapi) Authorization header authentication scheme
 
