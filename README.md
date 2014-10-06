@@ -13,9 +13,9 @@
 
 Special thanks to @johnbrett for [hapi-auth-bearer-token plugin](https://www.npmjs.org/package/hapi-auth-bearer-token), which this plugin used as scaffolding.
 
-You might find that the [hapi-auth-bearer-token plugin](https://www.npmjs.org/package/hapi-auth-bearer-token) is all you need, which also allows for `Bearer` supplied as a query param (this module does not). This plugin exists to handle the whole Authorization header, which allows semicolon delimited Authorization sources. This is useful if you need to validate more than one Authorization header field. For example, the API that this plugin was originally built for was gated by an API management proxy, which forwards traffic along with an "FD" Authorization header, added along with the "Bearer" header like so: `Authorization: FD AF6C74D1-BBB2-4171-8EE3-7BE9356EB018; Bearer 12345678`
+You might find that the [hapi-auth-bearer-token plugin](https://www.npmjs.org/package/hapi-auth-bearer-token) is all you need, which also allows for `Bearer` supplied as a query param (this module does not). This plugin exists to handle the whole Authorization header, which allows comma delimited Authorization sources. This is useful if you need to validate more than one Authorization header field. For example, the API that this plugin was originally built for was gated by an API management proxy, which forwards traffic along with an "FD" Authorization header, added along with the "Bearer" header like so: `Authorization: FD AF6C74D1-BBB2-4171-8EE3-7BE9356EB018, Bearer 12345678`
 
-This plugin is identical to [hapi-auth-bearer-token plugin](https://www.npmjs.org/package/hapi-auth-bearer-token) except that it will return `tokens` as an object back to your callback rather than `token` as the `Bearer` field value (e.g. `Authorization: FD AF6C74D1-BBB2-4171-8EE3-7BE9356EB018; Bearer 12345678` would result in your validate function being called with tokens set to
+This plugin is identical to [hapi-auth-bearer-token plugin](https://www.npmjs.org/package/hapi-auth-bearer-token) except that it will return `tokens` as an object back to your callback rather than `token` as the `Bearer` field value (e.g. `Authorization: FD AF6C74D1-BBB2-4171-8EE3-7BE9356EB018, Bearer 12345678` would result in your validate function being called with tokens set to
 ```
 {
    Bearer: 12345678,

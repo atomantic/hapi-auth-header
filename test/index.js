@@ -106,7 +106,7 @@ describe('Authorization', function () {
     });
 
     it('returns 200 when using multi and passing multiple good auth tokens', function (done) {
-        var request = { method: 'GET', url: '/multi', headers: { authorization: 'Bearer 12345678; gateway 87654321' } };
+        var request = { method: 'GET', url: '/multi', headers: { authorization: 'Bearer 12345678, gateway 87654321' } };
         server.inject(request, function (res) {
             expect(res.statusCode).to.equal(200);
             expect(res.result).to.equal('success');
