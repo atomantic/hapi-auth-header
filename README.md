@@ -71,4 +71,9 @@ server.pack.register(require('hapi-auth-header'), function (err) {
 });
 ```
 
+# History
+- 2.0.0 - refactored to support ^8.6.1
+- 1.0.0 - works with Hapi ^6.7.1
+
+
 License MIT @ Adam Eivy 2014

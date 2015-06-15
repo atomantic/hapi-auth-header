@@ -1,12 +1,13 @@
+var Code = require('code');
 var Lab = require('lab');
 var Hapi = require('hapi');
-var lab = exports.lab = Lab.script();
 
-var expect = Lab.expect;
+var lab = exports.lab = Lab.script();
 var before = lab.before;
 var after = lab.after;
 var describe = lab.describe;
 var it = lab.it;
+var expect = Code.expect;
 
 describe('Authorization', function () {
 
@@ -15,14 +16,14 @@ describe('Authorization', function () {
     };
 
     var server = new Hapi.Server({debug: false});
+    server.connection();
     before(function(done){
-
-        server.pack.register(require('../'), function (err) {
-            expect(err).to.not.exist;
+        server.register(require('../'), function (err) {
+            expect(err).to.not.exist();
 
             server.auth.strategy('default', 'auth-header', true, {
                 validateFunc: function(tokens, callback) {
-                   return callback(null, tokens.Bearer==="12345678",  tokens);
+                   return callback(null, tokens.Bearer === '12345678', tokens);
                 }
             });
 
@@ -30,7 +31,7 @@ describe('Authorization', function () {
                 validateFunc: function(tokens, callback) {
                    return callback(
                        null,
-                       tokens.Bearer==="12345678" && tokens.gateway==='87654321',
+                       tokens.Bearer === '12345678' && tokens.gateway === '87654321',
                        tokens
                    );
                 }
@@ -44,7 +45,7 @@ describe('Authorization', function () {
 
             server.auth.strategy('with_error_strategy', 'auth-header', {
                 validateFunc: function(tokens, callback) {
-                    return callback({'Error':'Error'}, false, null);
+                    return callback({'Error': 'Error'}, false, null);
                 }
             });
 
@@ -73,7 +74,7 @@ describe('Authorization', function () {
     });
 
     it('returns 200 and success with correct bearer token header set', function (done) {
-        var request = { method: 'POST', url: '/basic', headers: { authorization: "Bearer 12345678" } };
+        var request = { method: 'POST', url: '/basic', headers: { authorization: 'Bearer 12345678' } };
         server.inject(request, function (res) {
             expect(res.statusCode).to.equal(200);
             expect(res.result).to.equal('success');
@@ -126,7 +127,7 @@ describe('Authorization', function () {
         var request = { method: 'GET', url: '/basic_validate_error', headers: { authorization: 'Bearer 12345678' } };
         server.inject(request, function (res) {
             expect(res.statusCode).to.equal(500);
-            expect(JSON.stringify(res.result)).to.equal("{\"Error\":\"Error\"}");
+            expect(JSON.stringify(res.result)).to.equal('{"Error":"Error"}');
             done();
         });
     });
