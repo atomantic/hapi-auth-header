@@ -45,11 +45,13 @@ var defaultHandler = function (request, reply) {
     reply('success');
 };
 
-var server = Hapi.createServer('localhost', 8080, {
-    cors: true
+var server = new Hapi.Server();
+server.connection({
+    port: 3117,
+    host: 'localhost'
 });
 
-server.pack.register(require('hapi-auth-header'), function (err) {
+server.register(require('hapi-auth-header'), function (err) {
 
     server.auth.strategy('header', 'auth-header', {
         validate: function( tokens, callback ) {
@@ -66,7 +68,7 @@ server.pack.register(require('hapi-auth-header'), function (err) {
     server.route({ method: 'GET', path: '/', handler: defaultHandler, config: { auth: 'header' } });
 
     server.start(function () {
-        console.log('Server started at: ' + server.info.uri);
+        console.log('Server started at: ' + server.info);
     })
 });
 ```
