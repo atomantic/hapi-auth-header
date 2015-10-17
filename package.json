@@ -1,7 +1,7 @@
 {
   "name": "hapi-auth-header",
   "description": "Robust Authorization Header Auth Scheme for Hapi, with custom error reporting schema.",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": "Adam Eivy <atomantic@gmail.com> (http://twitter.com/antic)",
   "repository": {
     "type": "git",
@@ -28,8 +28,8 @@
   },
   "devDependencies": {
     "code": "1.5.0",
-    "hapi": "10.4.1",
-    "lab": "6.1.0"
+    "hapi": "^11.0.0",
+    "lab": "^6.2.0"
   },
   "scripts": {
     "test": "node ./node_modules/lab/bin/lab -c"
