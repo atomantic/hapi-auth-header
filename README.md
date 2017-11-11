@@ -34,10 +34,9 @@ Authentication requires validating tokens passed by Authentication header. You c
 
 Bearer authentication requires validating a token passed in by either the bearer authorization header, or by an access_token query parameter. The `'auth-header'` scheme takes the following options:
 
-- `validateFunc` - (required) A validation function with the signature `function(tokens, callback)` where:
+- `validateFunc` - (required) An async validation function with the signature `function(tokens)` where:
     - `tokens` - an object containing each of the Authorization header keys.
-    - `callback` - a callback function with the signature `function(err, isValid, credentials)` where:
-        - `err` - an internal error.
+    - returns [isValid, credentials]
         - `isValid` - `true` if both the username was found and the password matched, otherwise `false`.
         - `credentials` - a credentials object passed back to the application in `request.auth.credentials`. Typically, `credentials` are only
           included when `isValid` is `true`, but there are cases when the application needs to know who tried to authenticate even when it fails
@@ -77,6 +76,3 @@ server.register(require('hapi-auth-header'), async (err) => {
     console.log('Server started at: ' + server.info);
 });
 ```
-
-
-License MIT @ Adam Eivy 2014
