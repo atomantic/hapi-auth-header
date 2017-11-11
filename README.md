@@ -9,6 +9,12 @@
 
 [**hapi**](https://github.com/spumko/hapi) Authorization header authentication scheme
 
+## Hapi compatibility
+
+**Version 3.x of this plugin is compatible with Hapi 17 and higher only.**
+
+For Hapi 16, please continue to use version 2.x of this plugin.
+
 ## Note
 
 Special thanks to @johnbrett for [hapi-auth-bearer-token plugin](https://www.npmjs.org/package/hapi-auth-bearer-token), which this plugin used as scaffolding.
@@ -39,44 +45,38 @@ Bearer authentication requires validating a token passed in by either the bearer
 - `options` - (optional) - there are currently no configuration options :)
 
 ```javascript
-var Hapi = require('hapi');
+const Hapi = require('hapi');
 
-var defaultHandler = function (request, reply) {
-    reply('success');
+const defaultHandler = (request, h) => {
+    return h.response('success');
 };
 
-var server = new Hapi.Server();
-server.connection({
+const server = new Hapi.Server({
     port: 3117,
     host: 'localhost'
 });
 
-server.register(require('hapi-auth-header'), function (err) {
+server.register(require('hapi-auth-header'), async (err) => {
 
     server.auth.strategy('header', 'auth-header', {
-        validate: function( tokens, callback ) {
+        validate: function( tokens ) {
             // Use a real strategy here,
             // e.g. send the token to an oauth validation API
             if(tokens.Bearer === "1234" && tokens.oauth === "4321" ){
-                callback(null, true, { token: tokens.bearer })
+                return [true, { token: tokens.bearer }]
             } else {
-                callback(null, false, { token: tokens.bearer })
+                return [false, { token: tokens.bearer }]
             }
         }
     });
 
-    server.route({ method: 'GET', path: '/', handler: defaultHandler, config: { auth: 'header' } });
+    server.route({ method: 'GET', path: '/', handler: defaultHandler, options: { auth: 'header' } });
 
-    server.start(function () {
-        console.log('Server started at: ' + server.info);
-    })
+    await server.start();
+
+    console.log('Server started at: ' + server.info);
 });
 ```
-
-# History
-- 2.1.0 - greenkeeper dep package updates
-- 2.0.0 - refactored to support ^8.6.1
-- 1.0.0 - works with Hapi ^6.7.1
 
 
 License MIT @ Adam Eivy 2014
