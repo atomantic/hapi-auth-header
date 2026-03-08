@@ -17,22 +17,22 @@
     "multiauth"
   ],
   "engines": {
-    "node": ">=8.0.0"
+    "node": ">=14.0.0"
   },
   "dependencies": {
-    "boom": "^7.1.0",
-    "hoek": "^5.0.2"
+    "@hapi/boom": "^10.0.1",
+    "@hapi/hoek": "^11.0.7"
   },
   "peerDependencies": {
-    "hapi": ">=17.x.x"
+    "@hapi/hapi": ">=20.x.x"
   },
   "devDependencies": {
-    "code": "^5.1.2",
-    "hapi": "^17.0.1",
-    "lab": "^15.1.2"
+    "@hapi/code": "^9.0.3",
+    "@hapi/hapi": "^21.4.7",
+    "@hapi/lab": "^26.0.0"
   },
   "scripts": {
-    "test": "node ./node_modules/lab/bin/lab -c"
+    "test": "node ./node_modules/@hapi/lab/bin/lab -c"
   },
   "bugs": {
     "url": "https://github.com/atomantic/hapi-auth-header/issues"
