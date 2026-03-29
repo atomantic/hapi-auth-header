@@ -41,5 +41,8 @@
   "directories": {
     "test": "test"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "overrides": {
+    "handlebars": ">=4.7.9"
+  }
 }
